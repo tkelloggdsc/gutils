@@ -17,14 +17,14 @@ type options struct {
 }
 
 func main() {
-	detailed := flag.Bool("l", false, "List file details")
+	var detailed *bool
+	detailed = flag.Bool("l", false, "List file details")
 
 	flag.Parse()
 
 	opts := options{*detailed}
 
 	for _, dir := range flag.Args() {
-		println(dir)
 		if _, err := os.Stat(dir); os.IsNotExist(err) {
 			continue
 		}
